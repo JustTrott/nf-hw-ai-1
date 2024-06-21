@@ -27,7 +27,7 @@ class chatController {
 	createChat = async (req: Request, res: Response) => {
 		try {
 			const chat = await this.chatService.createChat();
-			res.status(200).send(chat);
+			res.status(201).send(chat);
 		} catch (error) {
 			res.status(500).send({ error: "Failed to create chat" });
 		}
