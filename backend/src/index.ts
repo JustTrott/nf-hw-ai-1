@@ -23,7 +23,7 @@ const server = http.createServer(app);
 server.on("upgrade", (request, socket, head) => {
 	const origin = request.headers.origin;
 	// Validate the origin before proceeding
-	if (origin === "http://localhost:3000") {
+	if (origin === process.env.WEBSOCKET_ORIGIN_URL) {
 		wss.handleUpgrade(request, socket, head, (ws) => {
 			wss.emit("connection", ws, request);
 		});
