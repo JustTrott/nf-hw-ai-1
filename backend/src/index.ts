@@ -23,13 +23,13 @@ const server = http.createServer(app);
 server.on("upgrade", (request, socket, head) => {
 	const origin = request.headers.origin;
 	// Validate the origin before proceeding
-	if (origin === process.env.WEBSOCKET_ORIGIN_URL) {
-		wss.handleUpgrade(request, socket, head, (ws) => {
-			wss.emit("connection", ws, request);
-		});
-	} else {
-		socket.destroy();
-	}
+	wss.handleUpgrade(request, socket, head, (ws) => {
+		wss.emit("connection", ws, request);
+	});
+	// if (origin === process.env.WEBSOCKET_ORIGIN_URL) {
+	// } else {
+	// 	socket.destroy();
+	// }
 });
 
 server.listen(PORT, () => {
